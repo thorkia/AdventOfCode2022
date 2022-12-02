@@ -2,7 +2,7 @@
 filename = '.\\input\day1.txt'
 
 with open(filename) as f:
-    lines = [x for x in f.readlines()]
+    lines = [int(x.strip) for x in f.readlines()]
     f.close()
 
 elves =  [ ]
@@ -14,7 +14,7 @@ for line in lines:
         currentElf+=1
         elves.append(0)
     else:
-        elves[currentElf] += int(line.strip())
+        elves[currentElf] += line
 #Part 1
 mostCalories = max(elves)
 print(mostCalories)
