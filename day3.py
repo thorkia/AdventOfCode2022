@@ -33,10 +33,11 @@ print(priority)
 
 priority2 = 0
 for r in range(0,len(lines),3):
-    #find the intersection of all three bags
+    #find the intersection of all three bags    
     allthree = set(lines[r])
-    allthree = allthree.intersection(lines[r+1], lines[r+2])    
-        
+    allthree = allthree.intersection(lines[r+1], lines[r+2])
+    #the below alternateallthree works as well    
+    #alternateallthree = set(lines[r]) & set(lines[r+1]) & set(lines[r+2]) 
     priority2 += sum([charPoints[d] for d in allthree])
 
 print(priority2)
