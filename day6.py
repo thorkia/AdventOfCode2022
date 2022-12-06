@@ -1,21 +1,20 @@
 #filename = '.\\input\day6test.txt'
 filename = '.\\input\day6.txt'
 
+def startChar(message: str, windowSize: int) -> int:
+    for r in range(len(message)-windowSize):
+        unique = set(message[r:r+windowSize])
+        if len(unique) == windowSize:
+            return r+windowSize #advent of code uses 1 based arrays            
+    return -1
+
 with open(filename) as f:
     lines = [x for x in f.readlines()]
     f.close()
 
 for line in lines:
-    for r in range(len(line)-4):
-        unique = set(line[r:r+4])
-        if len(unique) == 4:
-            print(r+4) #advent of code uses 1 based arrays
-            break
+    print(startChar(line, 4))
 
 #part 2 - 14 character start of message
 for line in lines:
-    for r in range(len(line)-14):
-        unique = set(line[r:r+14])
-        if len(unique) == 14:
-            print(r+14) #advent of code uses 1 based arrays
-            break
+    print(startChar(line, 14))
