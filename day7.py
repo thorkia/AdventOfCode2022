@@ -13,10 +13,12 @@ class Directory:
         sizes[self.path] = sum([f[1] for f in self.files])
 
         for dir in self.subdir:
-            subSizes = dir.getSizes()
-            sizes[self.path]+= sum([s for s in subSizes.values()]) # the current folder also includes all child folder values
+            subSizes = dir.getSizes()            
             for k,v in subSizes.items():
                 sizes[k] = v
+                if k in [d.path for d in self.subdir]:
+                    sizes[self.path]+=v
+
 
         return sizes
     
@@ -55,9 +57,9 @@ for line in lines: #skip the first cd since we've created it to start
 
 sizes = rootDirectory.getSizes()
 
-print(sizes.keys())
+#print(sizes.keys())
 
-print([ k for k,v in sizes.items() if v<=100000 ])
+#print([ k for k,v in sizes.items() if v<=100000 ])
 print( sum([ s for s in sizes.values() if s<=100000 ]) )
 
 #Day 2
